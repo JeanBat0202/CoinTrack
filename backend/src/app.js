@@ -1,39 +1,49 @@
-// import some node modules for later
-
+// Importez les modules Node nécessaires
 const fs = require("node:fs");
 const path = require("node:path");
-
-// create express app
-
 const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
 
+// Créez l'application express
 const app = express();
 
-// use some application-level middlewares
-
+// Utilisez des middlewares au niveau de l'application
 app.use(express.json());
+app.use(cors()); // Utilisez CORS pour toutes les routes
 
-const cors = require("cors");
+// Importez et montez les routes de l'API
+const router = express.Router();
 
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL ?? "http://localhost:3000",
-    optionsSuccessStatus: 200,
-  })
-);
+router.get("/crypto-proxy", async (req, res) => {
+  try {
+    const { VITE_API_KEY } = process.env;
 
-// import and mount the API routes
+    // Utilisez une importation dynamique pour node-fetch (disponible dans tous les modules CommonJS)
+    const fetch = await import("node-fetch");
 
-const router = require("./router");
+    const response = await fetch.default(
+      "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=10",
+      {
+        headers: {
+          Accept: "application/json",
+          "X-CMC_PRO_API_KEY": VITE_API_KEY,
+        },
+      }
+    );
 
-app.use(router);
+    // Essaye de parser la réponse JSON
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error("Erreur lors de la récupération des données:", error);
+    res.status(500).send("Erreur lors de la récupération des données");
+  }
+});
 
-// serve the `backend/public` folder for public resources
+app.use("/api", router);
 
-app.use(express.static(path.join(__dirname, "../public")));
-
-// serve REACT APP
-
+// Servez l'application REACT
 const reactIndexFile = path.join(
   __dirname,
   "..",
@@ -44,17 +54,14 @@ const reactIndexFile = path.join(
 );
 
 if (fs.existsSync(reactIndexFile)) {
-  // serve REACT resources
-
+  // Servez les ressources REACT
   app.use(express.static(path.join(__dirname, "..", "..", "frontend", "dist")));
 
-  // redirect all requests to the REACT index file
-
+  // Redirigez toutes les demandes vers le fichier index REACT
   app.get("*", (req, res) => {
     res.sendFile(reactIndexFile);
   });
 }
 
-// ready to export
-
+// Prêt à être exporté
 module.exports = app;

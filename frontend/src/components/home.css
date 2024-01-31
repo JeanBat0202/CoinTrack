@@ -1,0 +1,17 @@
+.home {
+  height: 100vh;
+  background: linear-gradient(rgba(33, 33, 33, 0.41), rgba(33, 33, 33, 0.355)),
+    url("../assets/backgroundimage.png");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homeText {
+  font-size: 4.6em;
+  width: 75%;
+  margin-left: 5%;
+}

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 * {
-  font-family: "Bebas Neue";
+  font-family: "Montserrat", sans-serif;
   letter-spacing: 2px;
   box-sizing: border-box;
 }

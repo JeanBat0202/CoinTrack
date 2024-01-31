@@ -1,11 +1,15 @@
 import "./App.css";
-import Acceuil from "./pages/Acceuil";
+import Home from "./components/Home";
+import Market from "./components/Market";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <div>
-      <Acceuil />
-    </div>
+    <>
+      <Navbar />
+      <Home />
+      <Market />
+    </>
   );
 }
 

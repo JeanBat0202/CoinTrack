@@ -1,0 +1,10 @@
+.market {
+  height: 100vh;
+}
+
+.marketText {
+  font-size: 4em;
+  color: #143570;
+  margin-left: 5%;
+  margin-top: 5%;
+}
