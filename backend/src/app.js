@@ -41,6 +41,49 @@ router.get("/crypto-proxy", async (req, res) => {
   }
 });
 
+router.get("/crypto-proxy-logo", async (req, res) => {
+  try {
+    const { VITE_API_KEY } = process.env;
+
+    // Utilisez une importation dynamique pour node-fetch (disponible dans tous les modules CommonJS)
+    const fetch = await import("node-fetch");
+
+    const responseId = await fetch.default(
+      "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=10",
+      {
+        headers: {
+          Accept: "application/json",
+          "X-CMC_PRO_API_KEY": VITE_API_KEY,
+        },
+      }
+    );
+
+    const dataId = await responseId.json();
+
+    const orderedDataPromises = dataId.data.map(async (item) => {
+      const response = await fetch.default(
+        `https://pro-api.coinmarketcap.com/v2/cryptocurrency/info?id=${item.id}`,
+        {
+          headers: {
+            Accept: "application/json",
+            "X-CMC_PRO_API_KEY": VITE_API_KEY,
+          },
+        }
+      );
+
+      const responseData = await response.json();
+      return responseData.data[item.id];
+    });
+
+    const orderedData = await Promise.all(orderedDataPromises);
+
+    res.json({ orderedData });
+  } catch (error) {
+    console.error("Erreur lors de la récupération des données:", error);
+    res.status(500).send("Erreur lors de la récupération des données");
+  }
+});
+
 app.use("/api", router);
 
 // Servez l'application REACT

@@ -1,9 +1,36 @@
-.navbarbg {
+.navbar {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
   height: 4rem;
-  position: fixed;
+
   width: 100%;
   top: 0px;
   z-index: 10;
+  background-color: #e8f2fd;
+}
+
+.navbar-bg {
+  background-color: rgba(0, 0, 0, 0.92);
+  transition: 1s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+  color: #383c4d;
+}
+
+ul {
+  column-gap: 53px;
+}
+
+li {
+  font-size: large;
+  font-weight: 600;
+}
+
+.Navigation {
+  display: flex;
+  justify-content: space-between;
+  color: #383c4d;
 }
