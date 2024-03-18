@@ -36,8 +36,9 @@
   padding-bottom: 2%;
 }
 
-button {
+.button-style {
   background: url(../assets/background_button.png);
+  text-decoration: none;
   font-family: Thicccboi;
   width: 192px;
   height: 54px;

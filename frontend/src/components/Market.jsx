@@ -41,7 +41,9 @@ export default function Market() {
 
   return (
     <section className="market">
-      <div className="marketText">Top 10 des crypto-monnaies</div>
+      <div id="market-container" className="marketText">
+        Top 10 des crypto-monnaies
+      </div>
       <div className="market-container">
         <div className="table-section">
           <div className="table-container1">

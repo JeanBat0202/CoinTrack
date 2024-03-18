@@ -1,5 +1,7 @@
 import "./navbar.css";
 import { useState } from "react";
+import twitter from "../assets/twitter.png";
+import insta from "../assets/instagram.png";
 
 export default function Navbar() {
   const [color, setColor] = useState(false);
@@ -26,7 +28,10 @@ export default function Navbar() {
           </ul>
         </div>
       </nav>
-      <div className="logo font-extrabold text-2xl">CoinTrack</div>
+      <div className="social-network">
+        <img className="social-network-pic" src={twitter} alt="twitter" />
+        <img className="social-network-pic" src={insta} alt="insta" />
+      </div>
     </header>
   );
 }
