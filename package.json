@@ -2,7 +2,7 @@
   "name": "template-fullstack",
   "version": "3.0.0",
   "description": "project template for the React-Express-MySQL cursus in Wild Code School",
-  "homepage": "https://JeanBar0202.github.io/CoinTrack",
+  "homepage": "https://JeanBat0202.github.io/CoinTrack",
   "bugs": {
     "url": "https://github.com/wildcodeschool/js-template-fullstack/issues"
   },
@@ -21,6 +21,7 @@
     "dev-back": "npm --prefix ./backend run dev",
     "lint": "cross-env-shell \"cd ./frontend && $npm_package_config_cli run lint && cd ../backend && $npm_package_config_cli run lint\"",
     "fix": "cross-env-shell \"cd ./frontend && $npm_package_config_cli run fix && cd ../backend && $npm_package_config_cli run fix\"",
+    "build": "react-scripts build",
     "deploy": "gh-pages -d build"
   },
   "keywords": [],
