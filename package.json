@@ -20,9 +20,7 @@
     "dev-front": "npm --prefix ./frontend run dev",
     "dev-back": "npm --prefix ./backend run dev",
     "lint": "cd ./frontend && npm run lint && cd ../backend && npm run lint",
-    "fix": "cross-env-shell \"cd ./frontend && $npm_package_config_cli run fix && cd ../backend && $npm_package_config_cli run fix\"",
-    "build": "react-scripts build",
-    "deploy": "gh-pages -d build"
+    "fix": "cross-env-shell \"cd ./frontend && $npm_package_config_cli run fix && cd ../backend && $npm_package_config_cli run fix\""
   },
   "keywords": [],
   "author": "Wild Code School",
@@ -30,7 +28,6 @@
   "devDependencies": {
     "concurrently": "^7.6.0",
     "cross-env": "^7.0.3",
-    "gh-pages": "^6.1.1",
     "husky": "^8.0.3",
     "tailwindcss": "^3.4.1"
   },
